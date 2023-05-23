@@ -1,0 +1,26 @@
+{% extends './layouts/base.html'%}
+{% block content%}
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 mt-3">
+            <h1 class="text-center display-3 py-5">Tasks Pending</h1>
+            <ul class="list-group">
+                {% for task in tasks %}
+                    <a class="list-group-item" href="{% url 'task_detail' task.id %}">
+                        <header class="d-flex justify-content-between">
+                            <h3 class="fw-bold">{{task.title}}</h3>
+                        </header>
+                        <p><b>Description:</b> {{task.description}}</p>
+                        {% if task.important %}
+                        <p>La Tarea es importante</p>
+                        {% else %}
+                        <p>La Tarea no es importante</p>
+                        {% endif %}
+                        <p>la tarea fue creada por <b>{{task.user.username}}</b></p>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}
